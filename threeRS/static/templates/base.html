@@ -47,18 +47,50 @@
             padding-bottom: 7px;
             border:0;
         }
+
+        nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        .active {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .active:hover {
+            background-color: #111;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
     </style>
 </head>
 
 <body>
     {% if request.path != '/' and user.is_authenticated %}
-        <header>
-            <form method = "post" action = "{% url 'logout' %}">
+
+        <nav>
+            <li><a class="active" href="{% url 'reservation:home' %}">Home</a></li>
+            <li><a class = "active" href="{% url 'reservation:home' %}">Account</a></li>
+            <form method = "post" action = "{% url 'reservation:logout' %}">
                 {% csrf_token %}
                 <button type = "submit" class = "logoutButton">Logout</button>
                 <input type="hidden" name="next" value="{{ next }}" >
             </form>
-        </header>
+
+        </nav>
     {% endif %}
 
     <footer class="footer">
