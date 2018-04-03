@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Sign in{% endblock %}
+{% block title %}Log in{% endblock %}
 
 {% block content %}
     <style>
@@ -45,7 +45,7 @@
     <p style="text-align:center;">Sign in to your account below</p>
 
     {% if form.errors %}
-        <p> Your username/password is incorrect. Please try again.</p>
+        <p style="text-align:center; color:red;">Your username/password is incorrect. Please try again.</p>
     {% endif %}
 
     {% if next %}
@@ -55,11 +55,10 @@
         <p action = "{% url 'login' %}">Please login to see this page.</p>
         {% endif %}
     {% endif %}
-
     <div class = "container" style = "text-align:center">
         <form method="post" action = "{% url 'login' %}">
             {% csrf_token %}
-            <br>RCS ID: <br>
+            <br>RCS ID:<br>
             {{ form.username }} <br>
             Password:<br>
             {{ form.password }} <br><br>
@@ -67,6 +66,4 @@
             <input type="hidden" name="next" value="{{ next }}">
         </form>
     </div>
-
-
 {% endblock %}

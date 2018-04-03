@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block title %}Rooms{% endblock %}
 
-	<h1>Available Rooms in {{ building.name }}:</h1>
-	{% if available_rooms %}
+{% block content %}
+	<h1 style="text-align:center;">Available Rooms in {{ building.name }}</h1>
+	{% if rooms %}
 		<ul>
-			{% for room in available_rooms %}
-				<li><a href="{% url 'reservation:reserve' building.id room.id%}">{{ room.name }}</a></li>
+			{% for room in rooms %}
+				<li><a href="{% url 'reservation:reserve' building.id room.id%}">{{ room.name }}</a></li><br><br>
 			{% endfor %}
 		</ul>
 	{% else %}
-		<h2>No Rooms Are Available</h2>
+		<h3 style="text-align:center;">All Rooms in {{ building.name }} are Reserved</h2>
 	{% endif %}
 {% endblock %}

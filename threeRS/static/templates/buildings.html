@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 
+{% block title %}Buildings{% endblock %}
+
 {% block content %}
-	<h1>Buildings Available for Reservation</h1>
+	<h1 style="text-align:center;">Buildings Available for Reservation</h1>
 	{% if buildings %}
 		<ul>
 			{% for building in buildings %}
-				<li><a href="{% url 'reservation:rooms' building.id %}">{{building.name}}</a></li>
+				<li><a href="{% url 'reservation:rooms' building.id %}">{{building.name}}</a></li><br><br>
 			{% endfor %}
 		</ul>
 	{% else %}
-		<h3>No Buildings Are Available</h3>
+		<h3>No Buildings Are Available</h2>
 	{% endif %}
 {% endblock %}

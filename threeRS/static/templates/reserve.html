@@ -1,28 +1,30 @@
 {% extends 'base.html' %}
 
-<h1>Reservation Form for {{ room }}</h1>
+{% block title %}Create Reservation{% endblock %}
 
-{% if success %}
-<h3>{{ success }}</h3>
-{% elif room.reserved %}
-<h3>This room has already been reserved</h3>
-{% else %}
-	{% if error_message %}
-		<p><strong>{{ error_message }}</strong></p>
-	
+{% block content %}
+	{% if success %}
+	<h3 style="text-align:center;">{{ success }}</h3>
+	{% elif room.reserved %}
+	<h3 style="text-align:center;">{{ room }} has already been reserved.</h3>
+	{% else %}
+		{% if error_message %}
+			<p><strong>{{ error_message }}</strong></p>
+		{% endif %}
+		<h1 style="text-align:center;">Reservation Form for {{ room }}</h1>
+		<form method="POST" action="{% url 'reservation:reserve_success' building.id room.id %}" style = "padding: 20px;">
+			{% csrf_token %}
+			<br>Event Name:<br>
+			<input type="text" name="event_name"><br>
+			<br>Date:<br>
+			<input type="date" name="date"><br>
+			<br>Time Begin:<br>
+			<input type="time" name="time_begin"><br>
+			<br>Time End:<br>
+			<input type="time" name="time_end"><br>
+			<br>Attendance:<br>
+			<input type="number" name="attendance"><br><br>
+			<input type="submit" value="Make Reservation">
+		</form>
 	{% endif %}
-	<form action="{% url 'reservation:reserve_success' building.id room.id %}" method="post">
-		{% csrf_token %}
-		<br>Event Name:<br>
-		<input type="text" name="event_name"><br>
-		Date:<br>
-		<input type="date" name="date"><br>
-		Time Begin:<br>
-		<input type="time" name="time_begin"><br>
-		Time End:<br>
-		<input type="time" name="time_end"><br>
-		Attendance:<br>
-		<input type="number" name="attendance"><br><br>
-		<input type="submit" value="Make Reservation">
-	</form>
-{% endif %}
+{% endblock %}

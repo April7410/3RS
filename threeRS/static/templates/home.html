@@ -2,7 +2,12 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-
-    <p style = "text-align:center; font-size:500%;">Welcome, {{ user.username }}</p>
-
+    {% if user.is_authenticated %}
+        <p style="text-align:center; font-size:500%;">Welcome, {{ user.username }}</p>
+        <a href="{% url 'reservation:buildings' %}" style="text-align:center;">Make a Reservation</a><br>
+        <a href="{% url 'logout' %}" style="text-align:center;">Log Out</a>
+    {% else %}
+        <p style="text-align:center; font-size:500%;">Please Log In to use 3RS</p>
+        <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
 {% endblock %}
