@@ -1,5 +1,5 @@
-import uuid
 from django.db import models
+from django.urls import reverse
 from django.utils.encoding import smart_text
 
 class Building(models.Model):
@@ -28,8 +28,11 @@ class Reservation(models.Model):
 	time_begin = models.TimeField("Time Begin")
 	time_end = models.TimeField("Time End")
 	attendance = models.PositiveSmallIntegerField("Attendance", default=0)
-	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False);
-	
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    
+	def get_absolute_url(self):
+		return reverse('reservation:detail', kwargs={'reservation_pk' : self.pk})
+    
 	def __str__(self):
 		return smart_text(self.event_name + " @ " + str(self.room) +
 						  " (" + str(self.time_begin) + " - " +

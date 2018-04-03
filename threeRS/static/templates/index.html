@@ -1,9 +1,0 @@
-{% if building_list %}
-    <ul>
-    {% for building in building_list %}
-        <li><a href="{% url 'detail' building.id %}">{{ building.building_name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No buildings are available.</p>
-{% endif %}

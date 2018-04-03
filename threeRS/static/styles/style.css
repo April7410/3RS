@@ -1,7 +1,27 @@
-body{
-	background: white url("images/background.jpg");
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+
+.footer {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding-right: 10px;
+	background-color: crimson;
+	font-size:70%;
+	font-style:normal;
+	color:white;
 }
 
+.logo {
+	float: left;
+	width: 15%;
+	padding-left: 7px;
+	padding-bottom: 7px;
+	border:0;
+}
 .navbar{
 	border-radius: 0;
 }
