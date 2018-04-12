@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils.encoding import smart_text
@@ -20,7 +21,7 @@ class Room(models.Model):
         return self.reserved
 
 class Reservation(models.Model):
-	#account = models.ForeignKey('signup.SignUp', on_delete=models.CASCADE)
+	account = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	building = models.ForeignKey(Building, on_delete=models.CASCADE)
 	room = models.ForeignKey(Room, on_delete=models.CASCADE)
 	event_name = models.CharField("Event Name", max_length=30)

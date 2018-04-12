@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     # Added myself
     'phonenumber_field',
     # apps
-    'reservation.apps.ReservationConfig',
-    'account.apps.AccountConfig',
+    'reservation',
+    'account',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -128,6 +130,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+AUTH_USER_MODEL = 'account.User'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
