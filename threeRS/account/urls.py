@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^login/$', login, {'template_name': 'login.html'}),
     url(r'^logout/$', logout, {'template_name': 'logout.html'}),
     path('register/', register, name='register'),
+    path('profile/', profile, name='profile'),
+    path('profile/edit', edit_profile, name='edit_profile'),
 ]

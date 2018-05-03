@@ -1,7 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, ReadOnlyPasswordHashField
 from .models import User
-
+from django.contrib.auth.forms import UserCreationForm, ReadOnlyPasswordHashField
 
 
 class LoginForm(forms.Form):
@@ -9,8 +8,10 @@ class LoginForm(forms.Form):
 	password	= forms.CharField(label='Password', widget=forms.PasswordInput)
 
 class RegistrationForm(UserCreationForm):
-	password1	= forms.CharField(label='Password', widget=forms.PasswordInput)
-	password2	= forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+	password1	= forms.CharField(label='Confirm Password',
+								  widget=forms.PasswordInput(attrs = {'placeholder': 'Enter password here...'}))
+	password2	= forms.CharField(label='Confirm Password',
+								  widget=forms.PasswordInput(attrs = {'placeholder': 'Enter password here...'}))
 	
 	class Meta:
 		model = User
@@ -25,8 +26,9 @@ class RegistrationForm(UserCreationForm):
 	def save(self, commit=True):
 		# Create the model, but don't save the data because it has to be edited
 		user = super(RegisterationForm, self).save(commit=False)
-		user.email = cleaned_data['email']
+		user.email = self.cleaned_data['email']
 		user.password = set_password(self.cleaned_data["password1"])
+		user.name = self.cleaned_data['name']
 		
 		if commit:
 			user.save()
