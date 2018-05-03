@@ -40,42 +40,18 @@
         }
     </style>
 
-    <form method="post" action = "{% url 'home' %}" style = "border: 1px solid #ccc; padding: 5px;">
+    <h1>Register</h1>
+    <form method="POST" action = "{% url 'home' %}" style = "border: 1px solid #ccc; padding: 5px;">
         <div class = "container">
             {% csrf_token %}
-            <h1>Sign up</h1>
-            <p>Please fill in this form to create an account.</p>
-
-            Name*
-            <input type="text" name="name" > <br>
-
-            RIN*
-            <input type="text" name="RIN" > <br>
-
-            RCS ID*
-            <input type="text" name="RCSID" > <br>
-
-            Password*
-            <input type="password" name="psw" id = "myInput">
-            <input type="checkbox" onclick="myFunction()">Show Password <br>
-
-            Confirm Password*
-            <input type="password" name="psw-repeat" > <br>
-
-            Phone Number:
-            <input type="text" name="phone"> <br>
-
-            Fax Number:
-            <input type="text" name="fax"> <br><br>
-
-            <div class="clearfix">
-              <button type="button" class="cancel">Cancel</button>
-              <button type="submit" class="signup">Sign Up</button>
-            </div>
+            {{ form.as_p }}
+            <button type="button" class="cancel">Cancel</button>
+            <button type="submit" class="signup">Sign Up</button>
 
         </div>
     </form>
-
+    
+    <!--
     <script>
         function myFunction() {
             var x = document.getElementById("myInput");
@@ -86,5 +62,5 @@
             }
         }
     </script>
-
+    -->
 {% endblock %}

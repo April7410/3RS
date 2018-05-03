@@ -3,7 +3,7 @@ from django.db import models
 
 class UserManager(BaseUserManager):
 	def create_user(self, email, name, password=None, is_student=False, is_staff=False,
-					is_admin=False):
+					is_admin=False, phone_number=None, fax_number=None):
 		if not email:
 			raise ValueError("Users must have an email")
 		if not name:
@@ -27,6 +27,8 @@ class UserManager(BaseUserManager):
 			email,
 			name,
 			password,
+			phone_number,
+			fax_number,
 			is_student=True,
 		)
 		return user
@@ -36,6 +38,8 @@ class UserManager(BaseUserManager):
 			email,
 			name,
 			password,
+			phone_number,
+			fax_number,
 			is_staff=True
 		)
 		return user
@@ -45,6 +49,8 @@ class UserManager(BaseUserManager):
 			email,
 			name,
 			password,
+			phone_number,
+			fax_number,
 			is_staff=True,
 			is_admin=True,
 		)
@@ -57,6 +63,8 @@ class User(AbstractBaseUser):
 	student		= models.BooleanField(default=False)
 	staff		= models.BooleanField(default=False)
 	admin		= models.BooleanField(default=False)
+	phone_number = models.IntegerField(blank=True, null=True)
+	fax_number	= models.IntegerField(blank=True, null=True)
 	timestamp	= models.DateTimeField(auto_now_add=True)
 	
 	USERNAME_FIELD = 'email'

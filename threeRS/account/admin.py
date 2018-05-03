@@ -33,5 +33,3 @@ class UserAdmin(BaseUserAdmin):
 
 # Register your models here.
 admin.site.register(User, UserAdmin)
-# Remove Group Model from admin. We're not using it.
-admin.site.unregister(Group)

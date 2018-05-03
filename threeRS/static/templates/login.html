@@ -4,7 +4,7 @@
 
 {% block content %}
     <style>
-        input[type=text], input[type=password] {
+        input[type=email], input[type=password] {
             width: 20%;
             padding: 6px 20px;
             margin: 4px;
@@ -17,7 +17,7 @@
             opacity: 0.6;
         }
 
-        input[type=text]:focus, input[type=password]:focus {
+        input[type=email]:focus, input[type=password]:focus {
             border: 3px solid crimson;
             opacity: 1;
         }
@@ -42,7 +42,7 @@
     </style>
 
     <h1 style="text-align:center;">RPI Room Reservation System</h1>
-    <p style="text-align:center;">Sign in to your account below</p>
+    <p style="text-align:center;">Login to your account below</p>
 
     {% if form.errors %}
         <p style="text-align:center; color:red;">Your username/password is incorrect. Please try again.</p>
@@ -56,12 +56,9 @@
         {% endif %}
     {% endif %}
     <div class = "container" style = "text-align:center">
-        <form method="post" action = "{% url 'login' %}">
+        <form method="POST" action = "{% url 'login' %}">
             {% csrf_token %}
-            <br>RCS ID:<br>
-            {{ form.username }} <br>
-            Password:<br>
-            {{ form.password }} <br><br>
+            {{ form.as_p }}
             <button type = "submit">Login</button>
             <input type="hidden" name="next" value="{{ next }}">
         </form>

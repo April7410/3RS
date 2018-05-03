@@ -1,10 +1,7 @@
-from django.contrib.auth.models import User
-from django import forms
+from .models import Reservation
+from django.forms import ModelForm
 
-
-class UserForm(forms.ModelForm):
-	password = forms.CharField(widget=forms.PasswordInput)
-	
+class ReserveForm(forms.ModelForm):
 	class Meta:
 		model = User
-		fields = ['rin', 'password', 'email', 'name']
+		fields = ('event_name', 'date', 'time_begin', 'time_end', 'attendance')
